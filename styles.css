@@ -1,7 +1,28 @@
-* {
-    margin: 0;
-    padding: 0;
+#cuadroPrincipal {
+background-color: red;
+width: 100%;
+
+display: flex;
+gap: 5px;
+justify-content: center;
+flex-wrap: wrap;
+
+
+}
+
+.cartas {
+    text-align: center;
     background-color: black;
+    width: 200px;
+    height: 300px;
+    padding-top: 20px;
+}
+
+.cartas img {
+    width: 40%;
+}
+
+.cartas {
+    padding: 0 30px;
     color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
