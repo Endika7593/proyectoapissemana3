@@ -39,7 +39,7 @@ async function mostrarHechizos(){
     datosExtraidosHechizos.forEach(hechizo => {
         let div = document.createElement("div")
         div.innerHTML = `<div class="cartas"> <h3>${hechizo.name}</h3>
-        <p>"${hechizo.description}"</p>
+        <p>""</p>
         </div>`
         
             cuadroPrincipal.appendChild(div);

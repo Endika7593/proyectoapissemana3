@@ -1,7 +1,6 @@
 #cuadroPrincipal {
 background-color: red;
 width: 100%;
-
 display: flex;
 gap: 5px;
 justify-content: center;
@@ -14,12 +13,12 @@ flex-wrap: wrap;
     text-align: center;
     background-color: black;
     width: 200px;
-    height: 300px;
+    height: 400px;
     padding-top: 20px;
 }
 
 .cartas img {
-    width: 40%;
+    width: 60%;
 }
 
 .cartas {
