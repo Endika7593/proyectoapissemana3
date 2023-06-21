@@ -1,7 +1,35 @@
-* {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+#cuadro-principal{
+
+    background-color: red;
+    width: 100%;  
+    display: flex; 
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    }
+    
+    .cartas{
+        text-align: center;
+        background-color: black;
+        width: 150px;  
+        height: 300px; 
+        padding-top: 20px; 
+    }
+    
+    .cartas img {
+        
+        width: 60%;
+    }
+    
+    .cartas h3{
+        
+        padding: 0 10px; 
+        color: white;
+    }
+
+    .cartas p{ 
+        padding: 0 10px; 
+        color: white;
+        font-size: 0.7rem; 
+    }
