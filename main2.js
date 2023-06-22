@@ -37,8 +37,10 @@ async function crearNuevoArrayPotterMasHechizos() {
     //En en objeto de Hechizos
     //quitar la propiedad id dentro del objeto
     //agregar valor aleatorio del 1 al 5 , a todos los hechizos
-    for (const hechizo of arrayHechizos) {
-        delete hechizo.id
+    
+    for (let i = 0; i < arrayHechizos.length; i++) {
+        const hechizo = arrayHechizos[i]; 
+        hechizo.id = i
         hechizo.valor = Math.floor((Math.random() * 5) + 1)
 
         //agregar al hechizo avada kedabra valor unico 10
@@ -55,12 +57,19 @@ async function crearNuevoArrayPotterMasHechizos() {
 
 //creamos un array nuevo de los personajes, que incluya, nombre, imagen y hechizo para cada uno
     let arrayLimpio = []
-    for (const personaje of arrayPotter) {
+    
+     for (let i = 0; i < arrayPotter.length  ; i++) { 
+        let nuevoPersonaje = { id: i , imagen: arrayPotter[i].image, nombre: arrayPotter[i].name, hechizos: sacarHechizoAleatorio() } 
+        arrayLimpio.push(nuevoPersonaje)
+         
+    } 
+    
+  /*    for (const personaje of arrayPotter) {
         let nuevoPersonaje = { imagen: personaje.image, nombre: personaje.name, hechizos: [sacarHechizoAleatorio(), sacarHechizoAleatorio(), sacarHechizoAleatorio(), sacarHechizoAleatorio(), sacarHechizoAleatorio()] }
         arrayLimpio.push(nuevoPersonaje)
         
-    }
-
+    }  */ 
+console.log(arrayLimpio) 
     return arrayLimpio 
 }
 
