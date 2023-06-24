@@ -2,7 +2,6 @@
 let URLharryCharacter = "https://hp-api.onrender.com/api/characters"
 let URLharrySpells = "https://hp-api.onrender.com/api/spells"
 
-
 //Sacar info de la api, de todos los personajes, devuelve 25 de ellos
 async function apiHarryPotter() {
     try {
@@ -59,7 +58,7 @@ async function crearNuevoArrayPotterMasHechizos() {
     let arrayLimpio = []
     
      for (let i = 0; i < arrayPotter.length  ; i++) { 
-        let nuevoPersonaje = { id: i , imagen: arrayPotter[i].image, nombre: arrayPotter[i].name, hechizos: sacarHechizoAleatorio() } 
+        let nuevoPersonaje = { id: 2 /* i */, imagen: arrayPotter[i].image, nombre: arrayPotter[i].name, hechizos: sacarHechizoAleatorio() } 
         arrayLimpio.push(nuevoPersonaje)
          
     } 
@@ -69,12 +68,11 @@ async function crearNuevoArrayPotterMasHechizos() {
         arrayLimpio.push(nuevoPersonaje)
         
     }  */ 
-console.log(arrayLimpio) 
     return arrayLimpio 
 }
 
- 
-export default crearNuevoArrayPotterMasHechizos;
+
+export {crearNuevoArrayPotterMasHechizos};
 
 
 
