@@ -1,109 +1,207 @@
-#cuadro-principal1{
+* {
+    box-sizing: border-box;
+
+}
+
+#cuadro-principal1 {
 
     background-color: red;
-    
+    padding-left: 50px;
     height: 300px;
-    width: 100%;   
-    display: flex; 
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+
+}
+
+#cuadro-principal2 {
+    padding-left: 200px;
+    background-color: blue;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 5px;
+    flex-wrap: wrap;
+
+}
+
+#cuadro-principal2 h1 {
+    display: none;
+
+}
+
+#cuadro-principal2-sacadas h1 {
+    display: none;
+
+}
+
+
+#cuadro-principal1-sacadas {
+
+    background-color: red;
+
+    height: 300px;
+    width: 100%;
+    display: flex;
     gap: 5px;
     justify-content: center;
     flex-wrap: wrap;
-    
-    }
-    
-    #cuadro-principal2{
 
-        background-color: blue;
-        
-        height: 300px;
-        width: 100%;   
-        display: flex; 
-        gap: 5px;
-        justify-content: center;
-        flex-wrap: wrap;
-        
-        }
+}
 
+#cuadro-principal2-sacadas {
 
-        #cuadro-principal1-sacadas{
+    background-color: blue;
 
-            background-color: red;
-            
-            height: 300px;
-            width: 100%;   
-            display: flex; 
-            gap: 5px;
-            justify-content: center;
-            flex-wrap: wrap;
-            
-            }
-            
-            #cuadro-principal2-sacadas{
-        
-                background-color: blue;
-                
-                height: 300px;
-                width: 100%;   
-                display: flex; 
-                gap: 5px;
-                justify-content: center;
-                flex-wrap: wrap;
-                
-                }
+    height: 300px;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
 
 
 
 
 
-    .cartas{
-        text-align: center;
-        background-color: black;
-        width: 100px;  
-        height: 300px; 
-        padding-top: 20px; 
-    }
-    
-    .cartas img {
-        
-        width: 60%;
-    }
-    
-    .cartas h3{
-        
-        padding: 0 10px; 
-        color: white;
-    } 
-    
-    .cartas h4{
-        
-        color: white;
-    }
+.cartas {
+    text-align: center;
+    background-color: black;
+    width: 100px;
+    height: 300px;
+    padding-top: 20px;
+}
 
-    .cartas h1{
-        
-        color: white;
-    }
+.cartas img {
 
-    .cartas p{ 
-        padding: 0 10px; 
-        color: white;
-        font-size: 0.7rem; 
-    }
+    width: 70%;
+    height: 60px;
+
+}
+
+.cartas h3 {
+
+    padding: 0 10px;
+    color: white;
+}
+
+.cartas h4 {
+
+    color: white;
+}
+
+.cartas h1 {
+
+    color: white;
+}
+
+.cartas p {
+    padding: 0 10px;
+    color: white;
+    font-size: 0.7rem;
+}
 
 
-    #main{
+#main {
 
-background-color: black;
-display: flex;
-width: 100%; 
-    }
+    background-color: black;
+    display: flex;
+    width: 100%;
+}
 
-    #main section{
-width: 50%;
+#main section {
+    width: 50%;
 
-    }
+}
 
-    #main section div h1,h2{
-color: white;    
-text-align: center;
-            }
+#main section div h1,
+h2 {
+    color: white;
+    text-align: center;
+}
+
+
+
+#combate {
+
+    width: 300px;
+    background-color: aqua;
+    position: absolute;
+    z-index: 0;
+    height: 300px;
+    left: 40%;
+    top: 40%;
+}
+
+
+#cuadro-combate #jugador1 {
+    width: 100%;
+    background-color: brown;
+}
+
+#cuadro-combate {
+    background-color: rgb(170, 243, 34);
+    width: 100%;
+    display: flex;
+}
+
+
+
+
+
+.cartas2 {
+    text-align: center;
+    background-color: black;
+    width: 150px;
+    height: 300px;
+    padding-top: 20px;
+}
+
+.cartas2 img {
+
+    width: 60%;
+}
+
+.cartas2 h3 {
+
+    padding: 0 10px;
+    color: white;
+}
+
+.cartas2 h4 {
+
+    color: white;
+}
+
+.cartas2 h1 {
+
+    color: white;
+}
+
+.cartas2 p {
+    padding: 0 10px;
+    color: white;
+    font-size: 0.7rem;
+}
+
+
+
+#score {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    z-index: 0;
+    background-color: chartreuse;
+    top: 100px;
+    left: 690px;
+}
+
+
+#cuadro-score h1 {
+    font-size: 3rem;
+    text-align: center;
+}

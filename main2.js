@@ -10,7 +10,7 @@ async function apiHarryPotter() {
         return arrayPersonajesSucio.splice(0, 24);
     } catch (error) {
         console.log(error)
-        alert("error")
+        //alert("error")
     }
 }
 
@@ -23,7 +23,7 @@ async function apiHarryPotterSpells() {
         return arrayHechizosSucio
     } catch (error) {
         console.log(error)
-        alert("error")
+       // alert("error")
     }
 }
 
@@ -59,19 +59,13 @@ async function crearNuevoArrayPotterMasHechizos() {
     
      for (let i = 0; i < arrayPotter.length  ; i++) { 
         let nuevoPersonaje = { id: 2 /* i */, imagen: arrayPotter[i].image, nombre: arrayPotter[i].name, hechizos: sacarHechizoAleatorio() } 
-        arrayLimpio.push(nuevoPersonaje)
-         
+        arrayLimpio.push(nuevoPersonaje)   
     } 
     
-  /*    for (const personaje of arrayPotter) {
-        let nuevoPersonaje = { imagen: personaje.image, nombre: personaje.name, hechizos: [sacarHechizoAleatorio(), sacarHechizoAleatorio(), sacarHechizoAleatorio(), sacarHechizoAleatorio(), sacarHechizoAleatorio()] }
-        arrayLimpio.push(nuevoPersonaje)
-        
-    }  */ 
     return arrayLimpio 
 }
 
-
+//exportamos la funcion que crea un array de hechizos y personajes, con propiedades como valor e id
 export {crearNuevoArrayPotterMasHechizos};
 
 
