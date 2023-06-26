@@ -1,76 +1,159 @@
 
-let URLharryCharacter = "https://hp-api.onrender.com/api/characters";
-let URLharrySpells = "https://hp-api.onrender.com/api/spells";
+let cuadroPrincipal = document.getElementById("cuadro-principal")
 
-//sacar info de la api, de todos los personajes, devuelve 25 de ellos
+let URLharryCharacter = "https://hp-api.onrender.com/api/characters"
+let URLharrySpells = "https://hp-api.onrender.com/api/spells"
+
 
 async function apiHarryPotter() {
-  try {
-    const respuesta = await fetch(URLharryCharacter);
-    const arrayPersonajesSucio = await respuesta.json();
-    return arrayPersonajesSucio.splice(0, 24);
-  } catch (error) {
-    console.log(error);
-    alert("error")
-  }
-  }
-
-
-  //sacar info de la api de todos los hechizos
-
-  async function apiHarryPotterSperlls() {
     try {
-      const respuesta = await fetch(URLharrySpells);
-      const arrayHechizosSucio = await respuesta.json();
-      return arrayHechizosSucio
+        const respuesta = await fetch(URLharryCharacter);
+        const arrayPersonajesSucio = await respuesta.json();
+        return arrayPersonajesSucio.splice(0, 24);
     } catch (error) {
-      
-      console.log(error)
-      alert("error")
+        console.log(error)
     }
+}
+ 
+async function apiHarryPotterSpells() {
+    try {
+        const respuesta = await fetch(URLharrySpells);
+        const arrayHechizosSucio = await respuesta.json();
+        return arrayHechizosSucio;
+    } catch (error) {
+        console.log(error)
     }
-  
+}
 
-//de los arrays obtenidos de la api, creamos nuevos array y objetos
 
-async function crearNuevoArrayPotterMasHechizos() {
-  let arrayPotter = await apiHarryPotter()
-  let arrayHechizos = await apiHarryPotterSperlls()
+async function hechizoAleatorio() {
+    let arrayHechizos = await apiHarryPotterSpells()
 
-  //en el objeto de Hechizos
-  //quitar la propiedad id dentro del objeto
-  //agregar valor aleatorio del 1 al 5, a todos los hechizos
+    for (let i = 0; i < arrayHechizos.length; i++) {
 
-  for (const hechizo of arrayHechizos) {
-    delete hechizo.id
-    hechizo.valor = Math.floor((Math.random() * 5) + 1)
+        let j = Math.floor(Math.random() * (i))
 
-    //agregamos al Avada Kedavra valor único de 10
-
-    if (hechizo.name === "Avada Kedavra") {
-      hechizo.valor = 10
-
-    }
-  }
-
-  //del array de hechizos retorna un hechizo aleatorio
-
-  function sacarHecizoAleatorio() {
-    const aleatorio = arrayHechizos[Math.floor(Math.random() * arrayHechizos.length)]
-    return aleatorio;
-  }
-
-  //creamos un array nuevo de los personajes que incluya nombre, imagen y hechizos par cada uno
-
-  let arrayLimpio = []
-  for (const personaje of arrayPotter) {
-    let nuevoPersonaje = { imagen: personaje.image, nombre: personaje.name, hechizos: [sacarHecizoAleatorio(), sacarHecizoAleatorio(), sacarHecizoAleatorio(), sacarHecizoAleatorio(), sacarHecizoAleatorio()]}
-    arrayLimpio.push(nuevoPersonaje)
+        let temp = arrayHechizos[i];
+        arrayHechizos[i] = arrayHechizos[j];
+        arrayHechizos[j] = temp;
     }
 
-  return arrayLimpio;
-  }
+    return arrayHechizos.slice(0, 3)
+}
 
-  export default crearNuevoArrayPotterMasHechizos;
 
-  
+
+
+
+/*
+
+
+let cuadroPrincipal = document.getElementById("cuadro-principal")
+
+let URLharryCharacter = "https://hp-api.onrender.com/api/characters"
+
+async function apiHarryPotter() {
+    try {
+        const respuesta = await fetch(URLharryCharacter);
+        const jsonharryCharacter = await respuesta.json();
+        return jsonharryCharacter;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+async function apiHarryPotterHechizos() {
+
+    try {
+        const respuesta = await fetch("https://hp-api.onrender.com/api/spells        ")
+        const jsonharryHechizos = await respuesta.json()
+        return jsonharryHechizos
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+async function mostrarHechizos() {
+    let datosExtraidosHechizos = await apiHarryPotterHechizos()
+
+
+    for (const hechizo of datosExtraidosHechizos) {
+        let div = document.createElement("div")
+        div.innerHTML = ` <div class="cartas">
+           <h3>${hechizo.name}</h3>  
+   <p>${hechizo.description}</p> 
+   </div>`
+        cuadroPrincipal.appendChild(div);
+    }
+}
+
+
+apiHarryPotter()
+
+
+
+apiHarryPotterHechizos()
+// mostrarHechizos()
+ 
+
+unionDeArrays()
+
+
+async function unionDeArrays() {
+    let arrayHechizos = await apiHarryPotterHechizos()
+    // console.log(arrayHechizos)
+
+    let arrayPersonajes = await apiHarryPotter()
+    //console.log(arrayPersonajes)
+
+
+    async function hechizoAleatorio() {
+
+        for (let i = 0; i < arrayHechizos.length; i++) {
+
+            let j = Math.floor(Math.random() * (i))
+
+            let temp = arrayHechizos[i];
+            arrayHechizos[i] = arrayHechizos[j];
+            arrayHechizos[j] = temp;
+        }
+        return arrayHechizos
+    }
+
+
+    asignarhechizo()
+
+    async function asignarhechizo() {
+
+        let hechizoCarta = await hechizoAleatorio()
+
+        let cartaAleatoria = hechizoCarta.slice(0, 3)
+        
+        arrayPersonajes.splice(0, 24).forEach(e => { 
+            
+            console.log(e)  
+            e.hechizo = cartaAleatoria
+
+
+
+
+            let div = document.createElement("div")
+            div.innerHTML = ` <div class="cartas">
+<img src="${e.image}" alt="">
+<h3>${e.name}</h3> 
+<p>${e.hechizo.name}</p>  
+</div>`
+            cuadroPrincipal.appendChild(div); 
+
+        });
+
+
+    }
+
+}
+
+
+*/

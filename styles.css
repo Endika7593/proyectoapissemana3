@@ -1,27 +1,221 @@
-#cuadroPrincipal {
-background-color: red;
-width: 100%;
-display: flex;
-gap: 5px;
-justify-content: center;
-flex-wrap: wrap;
-
+* {
+    box-sizing: border-box;
+    
 
 }
+
+
+#maintitle {
+    text-align: center;
+    color: white;
+    
+}
+
+body {
+
+    background-image: url(duel.jpg);
+}
+
+#cuadro-principal1 {
+
+    background-color: #9c1203;
+    padding-left: 50px;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+
+}
+
+#cuadro-principal2 {
+    padding-left: 200px;
+    background-color: #033807;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 5px;
+    flex-wrap: wrap;
+
+}
+
+#cuadro-principal2 h1 {
+    display: none;
+
+}
+
+#cuadro-principal2-sacadas h1 {
+    display: none;
+
+}
+
+
+#cuadro-principal1-sacadas {
+
+    background-color: #00165e;
+
+    height: 300px;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+#cuadro-principal2-sacadas {
+
+    background-color: #e3a000;
+
+    height: 300px;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+
+
+
 
 .cartas {
     text-align: center;
     background-color: black;
-    width: 200px;
-    height: 400px;
+    width: 100px;
+    height: 300px;
     padding-top: 20px;
 }
 
 .cartas img {
+
+    width: 70%;
+    height: 60px;
+
+}
+
+.cartas h3 {
+
+    padding: 0 10px;
+    color: white;
+}
+
+.cartas h4 {
+
+    color: white;
+}
+
+.cartas h1 {
+
+    color: white;
+}
+
+.cartas p {
+    padding: 0 10px;
+    color: white;
+    font-size: 0.7rem;
+}
+
+
+#main {
+
+    background-color: black;
+    display: flex;
+    width: 100%;
+}
+
+#main section {
+    width: 50%;
+
+}
+
+#main section div h1,
+h2 {
+    color: white;
+    text-align: center;
+}
+
+
+
+#combate {
+
+    width: 300px;
+    background-color: #2d004d;
+    position: absolute;
+    z-index: 0;
+    height: 300px;
+    left: 40%;
+    top: 40%;
+}
+
+
+#cuadro-combate #jugador1 {
+    width: 100%;
+    background-color: brown;
+}
+
+#cuadro-combate {
+    background-color: rgb(170, 243, 34);
+    width: 100%;
+    display: flex;
+}
+
+
+
+
+
+.cartas2 {
+    text-align: center;
+    background-color: black;
+    width: 150px;
+    height: 300px;
+    padding-top: 20px;
+}
+
+.cartas2 img {
+
     width: 60%;
 }
 
-.cartas {
-    padding: 0 30px;
+.cartas2 h3 {
+
+    padding: 0 10px;
     color: white;
 }
+
+.cartas2 h4 {
+
+    color: white;
+}
+
+.cartas2 h1 {
+
+    color: white;
+}
+
+.cartas2 p {
+    padding: 0 10px;
+    color: white;
+    font-size: 0.7rem;
+}
+
+
+
+#score {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    z-index: 0;
+    background-color: #2d004d;
+    top: 100px;
+    left: 690px;
+}
+
+
+#cuadro-score h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+

@@ -1,101 +1,120 @@
-import crearNuevoArrayPotterMasHechizos from "./main.js";
+// importamos la funcion que crea el array de personajes con hechizos desde la api
+import { crearNuevoArrayPotterMasHechizos } from "./main2.js";
 
-let arrayPotterConHechizos = await crearNuevoArrayPotterMasHechizos();
 
+//ejecutamos la funcion de crear array de hechizos y personajes dentro de una funcion que se llama obtenerDatos, y la exportamos para usarla en otros lados
+export async function obtenerDatos() {
+    let arrayPotterConHechizos = await crearNuevoArrayPotterMasHechizos()
+    return arrayPotterConHechizos
+}
+
+//creamos la clase Carta con las propiedades que queremos que incluya nuestra carta
 class Carta {
-  constructor(imagen, nombre, hechizos) {
-    this.imagen = imagen;
-    this.nombre = nombre;
-    this.hechizos = hechizos;
-    this.valor = Math.floor(Math.random() * 100) + 1; // Valor aleatorio de la carta
-  }
-}
-
-class Mazo {
-  constructor() {
-    this.mazo = [];
-  }
-
-  agregar() {
-    for (let i = 0; i < 5; i++) {
-      const aleatorio =
-        arrayPotterConHechizos[
-          Math.floor(Math.random() * arrayPotterConHechizos.length)
-        ];
-      let carta = new Carta(
-        aleatorio.imagen,
-        aleatorio.nombre,
-        aleatorio.hechizos
-      );
-      this.mazo.push(carta);
+    constructor(id, imagen, nombre, hechizos) {
+        this.id = id
+        this.imagen = imagen
+        this.nombre = nombre
+        this.hechizos = hechizos
     }
-  }
-
-  sacarCarta() {
-    return this.mazo.shift(); // Retorna y remueve la primera carta del mazo
-  }
-
-  robarCarta(carta) {
-    this.mazo.push(carta); // Agrega una carta al final del mazo
-  }
 }
 
-let mazoJugador1 = new Mazo();
-mazoJugador1.agregar();
+//creamos la clase mazo que tiene como finalidad varias funciones y la exportamos para usarla en otros lados
+export class Mazo {
+    constructor() {
+        this.mazo = []
+        this.mazoParaRender = []
+        this.mazoSacadas = []
+    }
 
-let mazoJugador2 = new Mazo();
-mazoJugador2.agregar();
 
-console.log("Mazo Jugador 1:", mazoJugador1.mazo);
-console.log("Mazo Jugador 2:", mazoJugador2.mazo);
+    //la funcion agregar obtiene los datos del array de de personajes con hechizos y crea un nuevo array con una seleccion aleatoria de 5 cartas que se crean con la clase Carta.
 
-// Juego por turnos
-while (mazoJugador1.mazo.length > 0 && mazoJugador2.mazo.length > 0) {
-  const cartaJugador1 = mazoJugador1.sacarCarta();
-  const cartaJugador2 = mazoJugador2.sacarCarta();
+    async agregar() {
+        let arrayPotterConHechizos = await obtenerDatos()
 
-  console.log("Carta Jugador 1:", cartaJugador1);
-  console.log("Carta Jugador 2:", cartaJugador2);
+        //iteramos el array arrayPotterConHechizos 5 veces
+        for (let i = 0; i < 5; i++) {
 
-  if (cartaJugador1.valor > cartaJugador2.valor) {
-    console.log("¡Jugador 1 gana!");
-  } else if (cartaJugador1.valor < cartaJugador2.valor) {
-    console.log("¡Jugador 2 gana!");
-  } else {
-    console.log("No hay heridos");
-  }
+            //por cada iteracion almacena en una variable con los valores de una carta aleatoria
+            const aleatorio = arrayPotterConHechizos[Math.floor(Math.random() * arrayPotterConHechizos.length)]
 
-  mazoJugador1.robarCarta(cartaJugador2);
-  mazoJugador2.robarCarta(cartaJugador1);
+            //creamos una nueva carta con los valores almacenados en la variable local
+            let cartas = new Carta(aleatorio.id, aleatorio.imagen, aleatorio.nombre, aleatorio.hechizos)
+
+            //agregamos la carta al mazo
+            this.mazo.push(cartas)
+        }
+
+        //clonamos el array con las 5 cartas
+        let mazoAntesDeSacar = [...this.mazo]
+        this.mazoParaRender = mazoAntesDeSacar
+    }
+
+
+    //funcion que renderiza el array de 5 cartas, enviando como parametro el jugador
+    async renderizar(jugador) {
+
+        //buscamos en el docuento el elemnto con id cuadro pricipal del jugador 1 o 2 segun el parametro de la funcion
+        let cuadroPrincipal = document.getElementById(`cuadro-principal${jugador}`)
+
+        //por cada elemento del array de 5 cartas, renderiza cada carta en el cuadro principal
+        this.mazoParaRender.forEach(e => {
+            let div = document.createElement("div")
+            div.innerHTML = ` <div class="cartas">
+    
+            <img src="${e.imagen}" alt="">   
+            <h3>${e.nombre}</h3>  
+            <h4>"${e.hechizos.name}"</h4>
+            <h1>Poder ${e.hechizos.valor}</h1> 
+            </div>`
+
+            cuadroPrincipal.appendChild(div);
+        });
+    }
+
+    //funcion que renderiza el array de las cartas sacadas por el jugador, muestra las cartas restantes
+    async renderizarSacadas(jugador) {
+
+        let cuadroPrincipal = document.getElementById(`cuadro-principal${jugador}-sacadas`)
+
+        cuadroPrincipal.innerHTML = ""
+
+        this.mazo.forEach(e => {
+            let div = document.createElement("div")
+            div.innerHTML = ` <div class="cartas">
+    
+            <img src="${e.imagen}" alt="">   
+            <h3>${e.nombre}</h3>  
+            <h4>"${e.hechizos.name}</h4>
+            <h1>Poder ${e.hechizos.valor}</h1> 
+            </div>  `
+            cuadroPrincipal.appendChild(div);
+        });
+    }
+
+
+    //funcion que saca una carta del mazo 
+    async sacarCarta(idCarta) {
+        
+        //esperamos los datos de array
+        await obtenerDatos()
+
+        //en el array iteramos las cartas y sacamos la que coincida el id, con el id enviado como parametro de la funcion
+        let indiceCarta = this.mazo.findIndex((carta) => carta.id === idCarta);
+
+        //si encontramos una carta con id valido, la sacamos del mazo y la metemos a un nuevo array de cartas sacadas
+        if (indiceCarta !== -1) {
+            let cartaSacada = this.mazo.splice(indiceCarta, 1)
+            this.mazoSacadas.push(cartaSacada)
+
+            //la funcion retorna la carta sacada
+            return cartaSacada
+        }
+    }
+
+
+    //funcion que espera los datos del array para poder mostrar las cartas sacadas
+    async verMazoCartasSacadas() {
+        await obtenerDatos()
+    }
 }
-
-console.log("Fin del duelo");
- 
-//----------------------Pantalla------------------------//
-
-// Obtén una referencia al contenedor de cartas
-const cartasContainer = document.getElementById("cartas-container");
-
-// Crea elementos HTML para cada carta y muestra la información
-mazoJugador1.mazo.forEach(carta => {
-  const cartaElement = document.createElement("div");
-  cartaElement.classList.add("cartas");
-
-  const imagenElement = document.createElement("img");
-  imagenElement.src = carta.imagen;
-  cartaElement.appendChild(imagenElement);
-
-  const nombreElement = document.createElement("h2");
-  nombreElement.textContent = carta.nombre;
-  cartaElement.appendChild(nombreElement);
-
-  const hechizosElement = document.createElement("ul");
-  carta.hechizos.forEach(hechizo => {
-    const hechizoItem = document.createElement("li");
-    hechizoItem.textContent = `${hechizo.name} (Valor: ${hechizo.valor})`;
-    hechizosElement.appendChild(hechizoItem);
-  });
-  cartaElement.appendChild(hechizosElement);
-
-  cartasContainer.appendChild(cartaElement);
-});

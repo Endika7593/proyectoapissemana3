@@ -1,24 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" >
     <title>Api Potter</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/harry-potter');
+        /* Aquí puedes agregar el resto de tu CSS */
+        body {
+            font-family: 'Harry Potter', sans-serif;
+        }
+    </style>
+    
+    
 </head>
 
 <body>
-    <header>Cartas Harry Potter</header>
-    <section>
-        <h1>Harry Potter Api</h1>
-        <div id="cuadroPrincipal"></div>
-        
+    <h1 id="maintitle">Api Potter</h1>
+    
+    <main id="main">
+            
+        <section>
+            <div>
+                <h1>Jugador 1</h1>
+                <h2>Equipo</h2>
+            </div>
+            <div id="cuadro-principal1"></div>
+            <h2>Duelista</h2>
+            <div id="cuadro-principal1-sacadas"></div>
+        </section>
+
+        <section>
+            <div>
+                <h1>Jugador 2</h1>
+                <h2>Equipo</h2>
+            </div>
+            <div id="cuadro-principal2"></div>
+            <h2>Duelista</h2>
+            <div id="cuadro-principal2-sacadas"></div>
+
+    </main>
     </section>
 
-    <script type="module" src="cartas.js"></script>
-    <script type="module" src="main.js"></script>
+    <section id="combate">
+        <div id="cuadro-combate">
+            <div id="jugador1"></div>
+            <div id="jugador2"></div>
+        </div>
+    </section>
+
+    <section id="score">
+        <div id="cuadro-score">
+        </div>
+    </section>
+
+    <script type="module" src="jugador.js"></script>
+
 </body>
+<footer></footer>
 
 </html>
